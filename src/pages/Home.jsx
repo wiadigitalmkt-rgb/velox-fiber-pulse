@@ -343,7 +343,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-[var(--bg-base)] font-body"
+      className="relative overflow-hidden bg-[var(--bg-base)] font-body pt-28 md:pt-32"
     >
       <div
         className="absolute inset-0 opacity-40"
