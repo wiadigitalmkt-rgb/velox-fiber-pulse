@@ -27,14 +27,6 @@ import {
 /* ------------------------------------------------------------------ */
 /*  TOKENS                                                             */
 /* ------------------------------------------------------------------ */
-// bg-deep      #002611
-// bg-base      #003311
-// bg-panel     #004d1a
-// accent-neon  #00e64d
-// accent-neon-soft #33ff77
-// accent-orange #ff7a1a
-// text-mist    #d7ecdf
-
 const FONT_IMPORT = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 :root{
@@ -247,7 +239,6 @@ function Navbar() {
   }, []);
 
   return (
-    return (
     <header
       className={`absolute top-0 left-0 w-full z-50 font-body transition-colors duration-300 ${
         scrolled
@@ -255,7 +246,7 @@ function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
         <Logo />
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -916,4 +907,3 @@ export default function App() {
     </div>
   );
 }
- 
