@@ -247,11 +247,12 @@ function Navbar() {
   }, []);
 
   return (
+    return (
     <header
-      className={`sticky top-0 z-50 font-body transition-colors duration-300 ${
+      className={`absolute top-0 left-0 w-full z-50 font-body transition-colors duration-300 ${
         scrolled
-          ? "bg-[var(--bg-deep)]/95 backdrop-blur border-b border-white/10"
-          : "bg-[var(--bg-deep)]"
+          ? "bg-[var(--bg-deep)]/90 backdrop-blur border-b border-white/10 !fixed"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
