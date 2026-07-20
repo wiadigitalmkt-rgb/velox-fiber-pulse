@@ -20,12 +20,11 @@ import {
   Linkedin,
   MessageCircle,
   RefreshCw,
-  Check,
   Zap,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  TOKENS                                                             */
+/*  TOKENS & CSS ENVIADO                                               */
 /* ------------------------------------------------------------------ */
 const FONT_IMPORT = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
@@ -40,29 +39,10 @@ const FONT_IMPORT = `
 }
 .font-display{font-family:'Space Grotesk',sans-serif;}
 .font-body{font-family:'Inter',sans-serif;}
-.signal-pulse{
-  animation: signalPulse 2.6s ease-in-out infinite;
-}
-@keyframes signalPulse{
-  0%,100%{ opacity:.35; transform: scale(0.9);}
-  50%{ opacity:1; transform: scale(1);}
-}
-.ring-sweep{
-  animation: ringSweep 3.2s linear infinite;
-}
-@keyframes ringSweep{
-  0%{ stroke-dashoffset: 340; }
-  100%{ stroke-dashoffset: 0; }
-}
-@keyframes floatSlow{
-  0%,100%{ transform: translateY(0px); }
-  50%{ transform: translateY(-10px); }
-}
-.float-slow{ animation: floatSlow 5s ease-in-out infinite; }
 `;
 
 /* ------------------------------------------------------------------ */
-/*  DATA                                                               */
+/*  DATA DE SLIDES (Coloque as URLs das suas imagens no campo image)   */
 /* ------------------------------------------------------------------ */
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -77,16 +57,22 @@ const SLIDES = [
     badge: "100% fibra óptica",
     title: "Assine agora\na melhor internet\nda região!",
     sub: "Velocidade estável, sem quedas, com instalação rápida e suporte que atende de verdade.",
+    // Substitua pela URL da sua primeira imagem
+    image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=1920&q=80",
   },
   {
     badge: "Wi-Fi 6 incluso",
     title: "Sua casa toda\nconectada, sem\ntravar.",
     sub: "Equipamentos premium inclusos em todos os planos, sem taxa escondida.",
+    // Substitua pela URL da sua segunda imagem
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80",
   },
   {
     badge: "Suporte humanizado",
     title: "Gente de verdade\nquando você\nprecisa.",
     sub: "Atendimento local, rápido e sem robô repetindo menu sem fim.",
+    // Substitua pela URL da sua terceira imagem
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80",
   },
 ];
 
@@ -163,51 +149,6 @@ const CITIES = [
     address: "Rua Coronel Francisco Martins Bonilha, 925 - Centro - Dourado/SP",
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/*  SIGNATURE VISUAL: animated fiber signal mark                       */
-/* ------------------------------------------------------------------ */
-function SignalMark({ className = "" }) {
-  return (
-    <div className={`relative ${className}`}>
-      <svg viewBox="0 0 120 120" className="w-full h-full">
-        <circle
-          cx="60"
-          cy="60"
-          r="50"
-          fill="none"
-          stroke="var(--neon)"
-          strokeOpacity="0.18"
-          strokeWidth="2"
-        />
-        <circle
-          cx="60"
-          cy="60"
-          r="50"
-          fill="none"
-          stroke="var(--neon)"
-          strokeWidth="2.5"
-          strokeDasharray="340"
-          strokeDashoffset="0"
-          strokeLinecap="round"
-          className="ring-sweep"
-          transform="rotate(-90 60 60)"
-        />
-        <g className="signal-pulse" style={{ transformOrigin: "60px 60px" }}>
-          <circle cx="60" cy="60" r="6" fill="var(--neon)" />
-        </g>
-        <path
-          d="M40 78 Q60 40 80 78"
-          fill="none"
-          stroke="var(--orange)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          opacity="0.85"
-        />
-      </svg>
-    </div>
-  );
-}
 
 /* ------------------------------------------------------------------ */
 /*  LOGO                                                                */
@@ -311,7 +252,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO CAROUSEL                                                       */
+/*  HERO (CARROSSEL COM BANNERS DE FUNDO)                               */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -329,55 +270,56 @@ function Hero() {
     setIdx((i) => (i + dir + SLIDES.length) % SLIDES.length);
   };
 
-  const slide = SLIDES[idx];
-
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden bg-[var(--bg-base)] font-body pt-28 md:pt-32"
-    >
-      <div
-        className="absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 60% at 75% 30%, rgba(0,230,77,0.25), transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background:
-            "radial-gradient(ellipse 40% 40% at 15% 80%, rgba(255,122,26,0.18), transparent 70%)",
-        }}
-      />
+    <section id="home" className="relative font-body min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
+      {/* IMAGENS DE FUNDO DOS BANNERS */}
+      {SLIDES.map((slide, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            i === idx ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+        >
+          {/* Imagem principal do Banner */}
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Overlay escuro/esverdeado para garantir a leitura do texto */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-deep)]/90 via-[var(--bg-deep)]/60 to-transparent" />
+        </div>
+      ))}
 
-      <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center min-h-[520px]">
-        <div className="relative z-10">
-          <span className="inline-block rounded-full bg-[var(--neon)] text-[var(--bg-deep)] text-xs font-bold tracking-wide px-4 py-1.5 mb-6">
-            {slide.badge}
+      {/* CONTEÚDO SOBREPOSTO */}
+      <div className="relative z-20 max-w-7xl mx-auto px-5 md:px-8 pt-32 pb-20 w-full">
+        <div className="max-w-2xl">
+          <span className="inline-block rounded-full bg-[var(--neon)] text-[var(--bg-deep)] text-xs font-bold tracking-wide px-4 py-1.5 mb-6 shadow-[0_0_15px_rgba(0,230,77,0.4)]">
+            {SLIDES[idx].badge}
           </span>
-          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-white whitespace-pre-line mb-5">
-            {slide.title}
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-white whitespace-pre-line mb-5 drop-shadow-md">
+            {SLIDES[idx].title}
           </h1>
-          <p className="text-[var(--mist)]/80 text-base md:text-lg max-w-md mb-8">
-            {slide.sub}
+          <p className="text-[var(--mist)] text-base md:text-lg max-w-md mb-8 drop-shadow">
+            {SLIDES[idx].sub}
           </p>
           <div className="flex flex-wrap gap-3">
             <a
               href="#planos"
-              className="rounded-full bg-[var(--orange)] text-white font-semibold text-sm px-6 py-3 hover:brightness-110 transition"
+              className="rounded-full bg-[var(--orange)] text-white font-semibold text-sm px-8 py-3.5 hover:brightness-110 transition shadow-lg"
             >
               Ver planos
             </a>
             <a
               href="#contato"
-              className="rounded-full border border-[var(--neon)]/50 text-[var(--neon)] font-semibold text-sm px-6 py-3 hover:bg-[var(--neon)]/10 transition"
+              className="rounded-full border border-[var(--neon)]/60 bg-[var(--bg-deep)]/40 backdrop-blur text-[var(--neon)] font-semibold text-sm px-8 py-3.5 hover:bg-[var(--neon)]/20 transition"
             >
               Falar com consultor
             </a>
           </div>
 
-          <div className="flex gap-2 mt-10">
+          {/* INDICADORES (PONTINHOS) DO CARROSSEL */}
+          <div className="flex gap-2 mt-12">
             {SLIDES.map((_, i) => (
               <button
                 key={i}
@@ -385,42 +327,30 @@ function Hero() {
                   clearInterval(timer.current);
                   setIdx(i);
                 }}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === idx ? "w-8 bg-[var(--neon)]" : "w-3 bg-white/25"
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === idx ? "w-8 bg-[var(--neon)]" : "w-3 bg-white/40"
                 }`}
                 aria-label={`Slide ${i + 1}`}
               />
             ))}
           </div>
         </div>
-
-        <div className="relative flex items-center justify-center">
-          <div className="float-slow">
-            <SignalMark className="w-64 h-64 md:w-80 md:h-80" />
-          </div>
-          <div className="absolute top-4 right-4 md:right-10 bg-[var(--bg-panel)]/80 backdrop-blur border border-white/10 rounded-2xl px-4 py-3 text-white text-sm shadow-xl">
-            <div className="flex items-center gap-2 font-semibold">
-              <Wifi size={16} className="text-[var(--neon)]" />
-              Sinal estável
-            </div>
-            <p className="text-[var(--mist)]/70 text-xs mt-1">99.9% uptime</p>
-          </div>
-        </div>
       </div>
 
+      {/* SETAS DE NAVEGAÇÃO LATERAIS */}
       <button
         onClick={() => go(-1)}
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/10 transition"
-        aria-label="Slide anterior"
+        className="z-30 absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white border border-white/20 transition backdrop-blur"
+        aria-label="Banner anterior"
       >
-        <ChevronLeft size={20} />
+        <ChevronLeft size={24} />
       </button>
       <button
         onClick={() => go(1)}
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/10 transition"
-        aria-label="Próximo slide"
+        className="z-30 absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white border border-white/20 transition backdrop-blur"
+        aria-label="Próximo banner"
       >
-        <ChevronRight size={20} />
+        <ChevronRight size={24} />
       </button>
     </section>
   );
@@ -786,7 +716,7 @@ function MapSection() {
             }}
           />
           <div className="relative flex flex-col items-center gap-3 text-center px-6">
-            <div className="w-12 h-12 rounded-full bg-[var(--orange)] flex items-center justify-center signal-pulse">
+            <div className="w-12 h-12 rounded-full bg-[var(--orange)] flex items-center justify-center">
               <MapPin size={22} className="text-white" />
             </div>
             <p className="text-white font-display font-semibold">
