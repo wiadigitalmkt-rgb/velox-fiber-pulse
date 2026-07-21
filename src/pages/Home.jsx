@@ -201,7 +201,7 @@ function Navbar() {
             className="inline-flex items-center gap-2 rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-5 py-2 hover:bg-[var(--blue-soft)] transition-colors shadow-[0_0_20px_-4px_var(--blue-accent)]"
           >
             <Zap size={16} strokeWidth={2.5} />
-            Contrate Online
+            Central do assinante
           </a>
         </div>
 
