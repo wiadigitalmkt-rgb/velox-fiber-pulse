@@ -135,12 +135,20 @@ const FAQS = [
 
 const CITIES = [
   {
-    name: "Ribeirão Bonito-SP",
-    address: "Rua Dr. Pirajá da Silva, 523 - Centro, Ribeirão Bonito - SP, 13580-009",
+    name: "Viamão - RS",
+    address: "Atendimento Residencial e Empresarial - Viamão/RS",
   },
   {
-    name: "Dourado-SP",
-    address: "Rua Coronel Francisco Martins Bonilha, 925 - Centro - Dourado/SP",
+    name: "Canoas - RS",
+    address: "Atendimento Residencial e Empresarial - Canoas/RS",
+  },
+  {
+    name: "Alvorada - RS",
+    address: "Atendimento Residencial e Empresarial - Alvorada/RS",
+  },
+  {
+    name: "Porto Alegre - RS",
+    address: "Atendimento Residencial e Empresarial - Porto Alegre/RS",
   },
 ];
 
@@ -161,7 +169,7 @@ function Logo() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  NAVBAR (SEM FIXAR AO ROLAR)                                         */
+/*  NAVBAR                                                              */
 /* ------------------------------------------------------------------ */
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -307,7 +315,7 @@ function Hero() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PLANOS (IGUAL AO SITE MODELO: MAIS FINA, PREÇOS E BOTÃO NEON)      */
+/*  PLANOS                                                              */
 /* ------------------------------------------------------------------ */
 function Plans() {
   return (
@@ -335,7 +343,6 @@ function Plans() {
               )}
 
               <div>
-                {/* VELOCIDADE */}
                 <div className="text-center my-2">
                   <span className="font-display font-black text-5xl sm:text-6xl text-white tracking-tight">
                     {p.speed}
@@ -345,7 +352,6 @@ function Plans() {
                   </p>
                 </div>
 
-                {/* RECURSOS */}
                 <ul className="space-y-4 my-8">
                   <PlanItem icon={Wifi} text="100% Fibra Óptica" />
                   <PlanItem icon={Router} text={`Equipamento ${p.equip}`} />
@@ -353,7 +359,6 @@ function Plans() {
                   <PlanItem icon={Headphones} text="Suporte Humanizado" />
                 </ul>
 
-                {/* BOTÃO BENEFÍCIOS */}
                 <div className="mb-6">
                   <button className="w-full text-xs font-semibold text-[var(--mist)] border border-white/20 rounded-full py-2 px-3 hover:bg-white/5 transition">
                     Saiba mais sobre os benefícios!
@@ -361,7 +366,6 @@ function Plans() {
                 </div>
               </div>
 
-              {/* PREÇO E BOTÃO NEON */}
               <div className="pt-2 border-t border-white/10 text-center">
                 <div className="flex items-baseline justify-center gap-1 my-3">
                   <span className="text-sm font-bold text-white/80">R$</span>
@@ -401,7 +405,7 @@ function PlanItem({ icon: Icon, text }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  EMPRESARIAL (BANNER DE IMAGEM)                                     */
+/*  EMPRESARIAL (TÍTULO MAIOR IGUAL AO MODELO)                          */
 /* ------------------------------------------------------------------ */
 function Business() {
   return (
@@ -418,7 +422,8 @@ function Business() {
 
       <div className="bg-[var(--bg-base)] py-16 px-5 md:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-display font-bold text-3xl text-white text-center mb-12">
+          {/* TÍTULO AMPLIADO */}
+          <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white text-center tracking-tight mb-12 uppercase">
             PLANOS <span className="text-[var(--blue-neon)]">PERSONALIZADOS</span>
           </h2>
 
@@ -447,7 +452,7 @@ function Business() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  COBERTURA COM CARD FLUTUANTE (ESPAÇAMENTO) + PLANO RENOVA           */
+/*  COBERTURA + PLANO RENOVA (BANNER COMPLETO)                         */
 /* ------------------------------------------------------------------ */
 function CoverageAndRenew() {
   const [form, setForm] = useState({ nome: "", endereco: "", cep: "" });
@@ -460,9 +465,9 @@ function CoverageAndRenew() {
   };
 
   return (
-    <section className="font-body bg-[var(--bg-deep)] py-12 px-5 md:px-8">
-      {/* CARD FLUTUANTE COM ESPAÇAMENTO */}
-      <div className="max-w-5xl mx-auto bg-[var(--bg-panel)] rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl mb-14">
+    <section className="font-body bg-[var(--bg-deep)] pt-12">
+      {/* COBERTURA (COM ESPAÇAMENTO EXTERNO) */}
+      <div className="max-w-5xl mx-auto bg-[var(--bg-panel)] rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl mb-14 px-5 md:px-8">
         <h3 className="text-center text-white font-display font-bold text-2xl md:text-3xl mb-8">
           Consulte área de cobertura
         </h3>
@@ -497,8 +502,8 @@ function CoverageAndRenew() {
         </form>
       </div>
 
-      {/* BANNER PLANO RENOVA */}
-      <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden leading-none shadow-2xl">
+      {/* PLANO RENOVA - BANNER COMPLETO DE LADO A LADO */}
+      <div className="w-full overflow-hidden leading-none">
         <a href="#contato" className="block w-full">
           <img
             src="https://i.ibb.co/TDjNCqWc/plano-renova.png"
@@ -616,7 +621,7 @@ function FaqAndContact() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  MAPA + FOOTER                                                       */
+/*  MAPA COM AS CIDADES DO RS                                           */
 /* ------------------------------------------------------------------ */
 function MapSection() {
   const [city, setCity] = useState(0);
@@ -626,9 +631,9 @@ function MapSection() {
     <section className="bg-[var(--bg-base)] font-body py-16 px-5 md:px-8">
       <div className="max-w-5xl mx-auto">
         <h3 className="text-center font-display font-bold text-2xl text-white mb-6">
-          Selecione uma cidade
+          Veja em quais cidades trabalhamos no RS
         </h3>
-        <div className="flex justify-center gap-3 mb-6">
+        <div className="flex flex-wrap justify-center gap-3 mb-6">
           {CITIES.map((c2, i) => (
             <button
               key={c2.name}
@@ -658,7 +663,7 @@ function MapSection() {
               <MapPin size={22} className="text-white" />
             </div>
             <p className="text-white font-display font-semibold">
-              WiaFibra Internet
+              WiaFibra Internet - {c.name}
             </p>
             <p className="text-[var(--mist)]/70 text-sm max-w-xs">
               {c.address}
@@ -700,18 +705,16 @@ function Footer() {
           <ul className="space-y-3 text-sm text-[var(--mist)]/75">
             <li className="flex items-center gap-2">
               <Phone size={15} className="text-[var(--blue-neon)]" />
-              (16) 3509-8888
+              (51) 3000-0000
             </li>
             <li className="flex items-center gap-2">
               <Mail size={15} className="text-[var(--blue-neon)]" />
               atendimento@wiafibra.com.br
             </li>
-            {CITIES.map((c) => (
-              <li key={c.name} className="flex items-start gap-2">
-                <MapPin size={15} className="text-[var(--blue-neon)] mt-0.5 shrink-0" />
-                <span>{c.address}</span>
-              </li>
-            ))}
+            <li className="flex items-start gap-2">
+              <MapPin size={15} className="text-[var(--blue-neon)] mt-0.5 shrink-0" />
+              <span>Atendendo Viamão, Canoas, Alvorada e Porto Alegre - RS</span>
+            </li>
           </ul>
         </div>
 
@@ -745,7 +748,7 @@ function Footer() {
 function WhatsAppFloat() {
   return (
     <a
-      href="https://wa.me/551635098888"
+      href="https://wa.me/5551999999999"
       target="_blank"
       rel="noreferrer"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-2xl hover:scale-105 transition-transform"
