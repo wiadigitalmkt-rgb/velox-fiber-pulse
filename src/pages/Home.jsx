@@ -24,18 +24,18 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  TOKENS & CSS                                                      */
+/*  TOKENS & CSS REESTRUTURADO EM AZUL                                */
 /* ------------------------------------------------------------------ */
 const FONT_IMPORT = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 :root{
-  --bg-deep:#002611;
-  --bg-base:#003311;
-  --bg-panel:#004d1a;
-  --neon:#00e64d;
-  --neon-soft:#33ff77;
-  --orange:#ff7a1a;
-  --mist:#d7ecdf;
+  --bg-deep: #00132b;
+  --bg-base: #00244e;
+  --bg-panel: #003b85;
+  --blue-accent: #1e90ff;
+  --blue-soft: #4a78c4;
+  --orange: #ff7a1a;
+  --mist: #e2eaf4;
 }
 .font-display{font-family:'Space Grotesk',sans-serif;}
 .font-body{font-family:'Inter',sans-serif;}
@@ -145,11 +145,11 @@ const CITIES = [
 function Logo() {
   return (
     <div className="flex items-center gap-2 select-none">
-      <div className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--bg-panel)] border border-[var(--neon)]/40 shadow-md">
-        <Wifi size={20} className="text-[var(--neon)]" strokeWidth={2.5} />
+      <div className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--bg-panel)] border border-[var(--blue-accent)]/40 shadow-md">
+        <Wifi size={20} className="text-[var(--blue-accent)]" strokeWidth={2.5} />
       </div>
       <span className="font-display font-bold text-xl tracking-tight text-white drop-shadow">
-        Wia<span className="text-[var(--neon)]">Fibra</span>
+        Wia<span className="text-[var(--blue-accent)]">Fibra</span>
       </span>
     </div>
   );
@@ -186,8 +186,8 @@ function Navbar() {
               href={l.href}
               className={`text-sm font-medium tracking-wide transition-colors ${
                 i === 0
-                  ? "text-white border-b-2 border-[var(--neon)] pb-1"
-                  : "text-white/90 hover:text-[var(--neon)]"
+                  ? "text-white border-b-2 border-[var(--blue-accent)] pb-1"
+                  : "text-white/90 hover:text-[var(--blue-accent)]"
               }`}
             >
               {l.label}
@@ -198,7 +198,7 @@ function Navbar() {
         <div className="hidden lg:block">
           <a
             href="#planos"
-            className="inline-flex items-center gap-2 rounded-full bg-[var(--neon)] text-[var(--bg-deep)] font-semibold text-sm px-5 py-2 hover:bg-[var(--neon-soft)] transition-colors shadow-[0_0_20px_-4px_var(--neon)]"
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-5 py-2 hover:bg-[var(--blue-soft)] transition-colors shadow-[0_0_20px_-4px_var(--blue-accent)]"
           >
             <Zap size={16} strokeWidth={2.5} />
             Contrate Online
@@ -229,7 +229,7 @@ function Navbar() {
           <a
             href="#planos"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--neon)] text-[var(--bg-deep)] font-semibold text-sm px-5 py-2.5"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-5 py-2.5"
           >
             <Zap size={16} strokeWidth={2.5} />
             Contrate Online
@@ -241,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO BANNER (1920x800 RESPONSIVO)                                   */
+/*  HERO BANNER                                                       */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -261,7 +261,6 @@ function Hero() {
 
   return (
     <section id="home" className="relative font-body w-full bg-[var(--bg-deep)] overflow-hidden">
-      {/* MANTÉM A PROPORÇÃO EXATA 1920x800 */}
       <div className="relative w-full aspect-[1920/800] min-h-[280px] max-h-[800px] flex items-center justify-center">
         {SLIDES.map((slide, i) => (
           <div
@@ -304,7 +303,7 @@ function Hero() {
                 setIdx(i);
               }}
               className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
-                i === idx ? "w-6 sm:w-8 bg-[var(--neon)]" : "w-2 sm:w-2.5 bg-white/50 hover:bg-white"
+                i === idx ? "w-6 sm:w-8 bg-[var(--blue-accent)]" : "w-2 sm:w-2.5 bg-white/50 hover:bg-white"
               }`}
               aria-label={`Banner ${i + 1}`}
             />
@@ -324,7 +323,7 @@ function Plans() {
       <div className="max-w-7xl mx-auto">
         <h2 className="font-display font-bold text-3xl md:text-4xl text-white text-center mb-3">
           CONHEÇA NOSSOS PLANOS DE{" "}
-          <span className="text-[var(--neon)]">INTERNET</span>
+          <span className="text-[var(--blue-accent)]">INTERNET</span>
         </h2>
         <p className="text-[var(--mist)]/70 text-center max-w-xl mx-auto mb-14">
           Fibra óptica de ponta a ponta, equipamentos premium inclusos e sem
@@ -337,20 +336,20 @@ function Plans() {
               key={p.speed}
               className={`relative rounded-3xl border p-8 flex flex-col transition-all duration-300 hover:-translate-y-1.5 ${
                 p.highlight
-                  ? "bg-[var(--bg-panel)] border-[var(--neon)] shadow-[0_0_40px_-10px_var(--neon)] md:scale-105"
-                  : "bg-[var(--bg-base)] border-white/10 hover:border-[var(--neon)]/50"
+                  ? "bg-[var(--bg-panel)] border-[var(--blue-accent)] shadow-[0_0_40px_-10px_rgba(30,144,255,0.4)] md:scale-105"
+                  : "bg-[var(--bg-base)] border-white/10 hover:border-[var(--blue-accent)]/50"
               }`}
             >
               {p.highlight && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--orange)] text-white text-xs font-bold px-4 py-1">
-                  MAIS ESCOLHIDO
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--orange)] text-white text-xs font-bold px-4 py-1 uppercase tracking-wide">
+                  Mais Escolhido
                 </span>
               )}
               <div className="mb-6">
                 <span className="font-display font-bold text-5xl text-white">
                   {p.speed}
                 </span>
-                <p className="font-display font-bold text-lg tracking-widest text-[var(--neon)]">
+                <p className="font-display font-bold text-lg tracking-widest text-[var(--blue-accent)]">
                   MEGA
                 </p>
               </div>
@@ -366,8 +365,8 @@ function Plans() {
                 href="#contato"
                 className={`text-center rounded-full font-semibold text-sm px-6 py-3 transition ${
                   p.highlight
-                    ? "bg-[var(--neon)] text-[var(--bg-deep)] hover:bg-[var(--neon-soft)]"
-                    : "bg-white/5 text-white border border-white/15 hover:border-[var(--neon)]/60"
+                    ? "bg-[var(--blue-accent)] text-white hover:bg-[var(--blue-soft)] shadow-lg"
+                    : "bg-white/5 text-white border border-white/15 hover:border-[var(--blue-accent)]/60"
                 }`}
               >
                 Contratar plano
@@ -383,8 +382,8 @@ function Plans() {
 function PlanItem({ icon: Icon, text }) {
   return (
     <li className="flex items-center gap-3 text-sm text-[var(--mist)]/90">
-      <span className="w-7 h-7 rounded-lg bg-[var(--neon)]/10 flex items-center justify-center shrink-0">
-        <Icon size={14} className="text-[var(--neon)]" />
+      <span className="w-7 h-7 rounded-lg bg-[var(--blue-accent)]/15 flex items-center justify-center shrink-0">
+        <Icon size={14} className="text-[var(--blue-accent)]" />
       </span>
       {text}
     </li>
@@ -397,7 +396,7 @@ function PlanItem({ icon: Icon, text }) {
 function Business() {
   return (
     <section id="sobre" className="font-body">
-      <div className="relative bg-gradient-to-r from-[var(--bg-panel)] via-[var(--bg-panel)] to-[var(--orange)]/90 overflow-hidden">
+      <div className="relative bg-gradient-to-r from-[var(--bg-panel)] via-[var(--bg-panel)] to-[var(--blue-soft)]/80 overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 grid md:grid-cols-2 gap-8 items-center">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
@@ -415,7 +414,7 @@ function Business() {
           <div className="flex md:justify-end">
             <a
               href="#contato"
-              className="rounded-full bg-white text-[var(--bg-deep)] font-semibold text-sm px-6 py-3 hover:bg-white/90 transition"
+              className="rounded-full bg-white text-[var(--bg-deep)] font-semibold text-sm px-6 py-3 hover:bg-white/90 transition shadow-md"
             >
               Falar com especialista
             </a>
@@ -426,17 +425,17 @@ function Business() {
       <div className="bg-[var(--bg-base)] py-16 px-5 md:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-display font-bold text-3xl text-white text-center mb-12">
-            PLANOS <span className="text-[var(--neon)]">PERSONALIZADOS</span>
+            PLANOS <span className="text-[var(--blue-accent)]">PERSONALIZADOS</span>
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {BUSINESS_FEATURES.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="rounded-2xl bg-[var(--bg-panel)]/60 border border-white/10 p-6 hover:border-[var(--neon)]/50 transition-colors"
+                className="rounded-2xl bg-[var(--bg-panel)]/60 border border-white/10 p-6 hover:border-[var(--blue-accent)]/50 transition-colors"
               >
-                <div className="w-11 h-11 rounded-xl bg-[var(--neon)]/10 flex items-center justify-center mb-4">
-                  <Icon size={20} className="text-[var(--neon)]" />
+                <div className="w-11 h-11 rounded-xl bg-[var(--blue-accent)]/15 flex items-center justify-center mb-4">
+                  <Icon size={20} className="text-[var(--blue-accent)]" />
                 </div>
                 <h4 className="font-display font-semibold text-white mb-2">
                   {title}
@@ -481,23 +480,23 @@ function CoverageAndRenew() {
               value={form.nome}
               onChange={(e) => setForm({ ...form, nome: e.target.value })}
               placeholder="Nome"
-              className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--neon)]"
+              className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
             />
             <input
               value={form.endereco}
               onChange={(e) => setForm({ ...form, endereco: e.target.value })}
               placeholder="Endereço"
-              className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--neon)]"
+              className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
             />
             <input
               value={form.cep}
               onChange={(e) => setForm({ ...form, cep: e.target.value })}
               placeholder="CEP"
-              className="md:w-40 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--neon)]"
+              className="md:w-40 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
             />
             <button
               type="submit"
-              className="rounded-full bg-[var(--neon)] text-[var(--bg-deep)] font-semibold text-sm px-7 py-3 hover:bg-[var(--neon-soft)] transition"
+              className="rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-7 py-3 hover:bg-[var(--blue-soft)] transition shadow-md"
             >
               {sent ? "Enviado!" : "Enviar"}
             </button>
@@ -505,10 +504,10 @@ function CoverageAndRenew() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-[var(--bg-base)] to-[var(--orange)]/25 py-14 px-5 md:px-8">
+      <div className="bg-gradient-to-r from-[var(--bg-base)] via-[var(--bg-panel)] to-[var(--blue-soft)]/40 py-14 px-5 md:px-8">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
-          <div className="w-14 h-14 rounded-2xl bg-[var(--neon)]/15 flex items-center justify-center shrink-0">
-            <RefreshCw size={26} className="text-[var(--neon)]" />
+          <div className="w-14 h-14 rounded-2xl bg-[var(--blue-accent)]/20 flex items-center justify-center shrink-0 border border-[var(--blue-accent)]/30">
+            <RefreshCw size={26} className="text-[var(--blue-accent)]" />
           </div>
           <div className="flex-1 text-center md:text-left">
             <h3 className="font-display font-bold text-2xl text-white mb-2">
@@ -522,7 +521,7 @@ function CoverageAndRenew() {
           </div>
           <a
             href="#contato"
-            className="rounded-full bg-[var(--neon)] text-[var(--bg-deep)] font-semibold text-sm px-6 py-3 whitespace-nowrap hover:bg-[var(--neon-soft)] transition"
+            className="rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-6 py-3 whitespace-nowrap hover:bg-[var(--blue-soft)] transition shadow-md"
           >
             Entre em contato e saiba mais!
           </a>
@@ -547,7 +546,7 @@ function FaqItem({ q, a, open, onClick }) {
         </span>
         <ChevronDown
           size={20}
-          className={`shrink-0 text-[var(--neon)] transition-transform duration-300 ${
+          className={`shrink-0 text-[var(--blue-accent)] transition-transform duration-300 ${
             open ? "rotate-180" : ""
           }`}
         />
@@ -580,7 +579,7 @@ function FaqAndContact() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14">
         <div>
           <h3 className="font-display font-bold text-3xl text-white mb-8">
-            Perguntas <span className="text-[var(--neon)]">Frequentes</span>
+            Perguntas <span className="text-[var(--blue-accent)]">Frequentes</span>
           </h3>
           <div>
             {FAQS.map((f, i) => (
@@ -595,7 +594,7 @@ function FaqAndContact() {
           </div>
         </div>
 
-        <div className="bg-[var(--bg-panel)] rounded-3xl p-8 border border-white/10 h-fit">
+        <div className="bg-[var(--bg-panel)] rounded-3xl p-8 border border-white/10 h-fit shadow-xl">
           <h3 className="font-display font-bold text-2xl text-white mb-6">
             Quero a melhor Internet da Região!
           </h3>
@@ -605,7 +604,7 @@ function FaqAndContact() {
               value={form.nome}
               onChange={(e) => setForm({ ...form, nome: e.target.value })}
               placeholder="Nome"
-              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--neon)]"
+              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
             />
             <input
               required
@@ -613,7 +612,7 @@ function FaqAndContact() {
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="E-mail"
-              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--neon)]"
+              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
             />
             <textarea
               required
@@ -621,11 +620,11 @@ function FaqAndContact() {
               onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
               placeholder="Mensagem"
               rows={4}
-              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-[var(--neon)]"
+              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-[var(--blue-accent)]"
             />
             <button
               type="submit"
-              className="rounded-full bg-[var(--orange)] text-white font-semibold text-sm px-6 py-3.5 hover:brightness-110 transition"
+              className="rounded-full bg-[var(--orange)] text-white font-semibold text-sm px-6 py-3.5 hover:brightness-110 transition shadow-lg"
             >
               {sent ? "Mensagem enviada!" : "Enviar"}
             </button>
@@ -656,8 +655,8 @@ function MapSection() {
               onClick={() => setCity(i)}
               className={`rounded-full text-sm font-semibold px-5 py-2.5 transition ${
                 city === i
-                  ? "bg-[var(--neon)] text-[var(--bg-deep)]"
-                  : "bg-[var(--bg-panel)] text-[var(--mist)]/80 border border-white/10 hover:border-[var(--neon)]/50"
+                  ? "bg-[var(--blue-accent)] text-white shadow-md"
+                  : "bg-[var(--bg-panel)] text-[var(--mist)]/80 border border-white/10 hover:border-[var(--blue-accent)]/50"
               }`}
             >
               {c2.name}
@@ -667,15 +666,15 @@ function MapSection() {
 
         <div className="rounded-2xl overflow-hidden border border-white/10 bg-[var(--bg-panel)] relative h-72 flex items-center justify-center">
           <div
-            className="absolute inset-0 opacity-70"
+            className="absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(0,230,77,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,230,77,0.08) 1px, transparent 1px)",
+                "linear-gradient(rgba(30,144,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(30,144,255,0.15) 1px, transparent 1px)",
               backgroundSize: "26px 26px",
             }}
           />
           <div className="relative flex flex-col items-center gap-3 text-center px-6">
-            <div className="w-12 h-12 rounded-full bg-[var(--orange)] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-[var(--orange)] flex items-center justify-center shadow-md">
               <MapPin size={22} className="text-white" />
             </div>
             <p className="text-white font-display font-semibold">
@@ -706,7 +705,7 @@ function Footer() {
               <a
                 key={i}
                 href="#"
-                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[var(--neon)]/60 hover:text-[var(--neon)] text-white transition"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[var(--blue-accent)]/60 hover:text-[var(--blue-accent)] text-white transition"
               >
                 <Icon size={16} />
               </a>
@@ -720,16 +719,16 @@ function Footer() {
           </h4>
           <ul className="space-y-3 text-sm text-[var(--mist)]/75">
             <li className="flex items-center gap-2">
-              <Phone size={15} className="text-[var(--neon)]" />
+              <Phone size={15} className="text-[var(--blue-accent)]" />
               (16) 3509-8888
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={15} className="text-[var(--neon)]" />
+              <Mail size={15} className="text-[var(--blue-accent)]" />
               atendimento@wiafibra.com.br
             </li>
             {CITIES.map((c) => (
               <li key={c.name} className="flex items-start gap-2">
-                <MapPin size={15} className="text-[var(--neon)] mt-0.5 shrink-0" />
+                <MapPin size={15} className="text-[var(--blue-accent)] mt-0.5 shrink-0" />
                 <span>{c.address}</span>
               </li>
             ))}
@@ -743,7 +742,7 @@ function Footer() {
           <ul className="space-y-3 text-sm text-[var(--mist)]/75">
             {NAV_LINKS.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className="hover:text-[var(--neon)] transition-colors">
+                <a href={l.href} className="hover:text-[var(--blue-accent)] transition-colors">
                   {l.label}
                 </a>
               </li>
