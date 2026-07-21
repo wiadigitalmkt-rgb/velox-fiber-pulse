@@ -41,9 +41,21 @@ const FONT_IMPORT = `
 .font-body{font-family:'Inter',sans-serif;}
 `;
 
-/* ------------------------------------------------------------------ */
-/*  DATA DE SLIDES (Coloque as URLs das suas imagens no campo image)   */
-/* ------------------------------------------------------------------ */
+const BANNERS = [
+  {
+    image: "https://i.ibb.co/L50P80T/banner-indique-ganhe.jpg",
+    alt: "Indique e Ganhe R$ 30,00 por indicação",
+  },
+  {
+    image: "https://i.ibb.co/6PqvhqS/banner-entretenimento.jpg",
+    alt: "Um mundo de Entretenimento na sua casa",
+  },
+  {
+    image: "https://i.ibb.co/C091r4V/banner-gamer-129.jpg",
+    alt: "Plano Gamer 1000 Mega por R$ 129,90",
+  },
+];
+
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "Sobre", href: "#sobre" },
