@@ -241,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO BANNER (COM DEGRADÊ NA BASE)                                   */
+/*  HERO BANNER (COM A LINHA DE DIVISÃO)                              */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -294,7 +294,7 @@ function Hero() {
         </button>
 
         {/* PONTINHOS NAVEGADORES */}
-        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
           {SLIDES.map((_, i) => (
             <button
               key={i}
@@ -310,21 +310,20 @@ function Hero() {
           ))}
         </div>
 
-        {/* GRADIENTE DE TRANSIÇÃO NA BASE (EFEITO IGUAL AO DO PRINT) */}
-        <div className="absolute bottom-0 left-0 w-full h-20 sm:h-32 bg-gradient-to-t from-[var(--bg-deep)] to-transparent z-20 pointer-events-none" />
+        {/* LINHA SEPARADORA/DIVISÃO (EXATAMENTE COMO NO ZOOM DO PRINT) */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] sm:h-[6px] bg-[var(--blue-accent)] z-40 shadow-[0_0_12px_var(--blue-accent)]" />
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  PLANOS (TÍTULO EXPANDIDO & IMPACTANTE)                            */
+/*  PLANOS                                                              */
 /* ------------------------------------------------------------------ */
 function Plans() {
   return (
-    <section id="planos" className="bg-[var(--bg-deep)] font-body pt-6 pb-20 px-5 md:px-8">
+    <section id="planos" className="bg-[var(--bg-deep)] font-body py-12 md:py-16 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* TÍTULO AUMENTADO NO ESTILO DO PRINT */}
         <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white text-center tracking-tight mb-4">
           CONHEÇA NOSSOS PLANOS DE{" "}
           <span className="text-[var(--blue-accent)]">INTERNET</span>
