@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  TOKENS & CSS ENVIADO                                               */
+/*  TOKENS & CSS                                                      */
 /* ------------------------------------------------------------------ */
 const FONT_IMPORT = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
@@ -41,19 +41,19 @@ const FONT_IMPORT = `
 .font-body{font-family:'Inter',sans-serif;}
 `;
 
-/* LINKS DOS BANNERS */
+/* BANNERS ORIGINAIS .PNG */
 const SLIDES = [
   {
-    image: "https://i.ibb.co/gLbZ06JL/banner1.jpg",
-    alt: "Plano Gamer 1000 Mega por R$ 129,90",
+    image: "https://i.ibb.co/fzxX1D4p/1.png",
+    alt: "Banner 1 - WiaFibra",
   },
   {
-    image: "https://i.ibb.co/dwt2L3Ht/banner2.jpg",
-    alt: "Um mundo de Entretenimento na sua casa",
+    image: "https://i.ibb.co/q3CsW42C/2.png",
+    alt: "Banner 2 - WiaFibra",
   },
   {
-    image: "https://i.ibb.co/HfHKFhnz/banner3.jpg",
-    alt: "Indique e Ganhe R$ 30,00 por indicação",
+    image: "https://i.ibb.co/Ndg207Kd/3.png",
+    alt: "Banner 3 - WiaFibra",
   },
 ];
 
@@ -124,7 +124,7 @@ const FAQS = [
   },
   {
     q: "Quais são os produtos que a WiaFibra trabalha?",
-    a: "Trabalhamos com internet residencial em fibra óptica, planos empresariais personalizados, IP fixo, link dedicated e suporte técnico especializado.",
+    a: "Trabalhamos com internet residencial em fibra óptica, planos empresariais personalizados, IP fixo, link dedicado e suporte técnico especializado.",
   },
 ];
 
@@ -163,20 +163,20 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`absolute top-0 left-0 w-full z-50 font-body transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 font-body transition-all duration-300 ${
         scrolled
-          ? "bg-[var(--bg-deep)]/95 backdrop-blur border-b border-white/10 !fixed shadow-lg"
-          : "bg-gradient-to-b from-black/80 via-black/40 to-transparent"
+          ? "bg-[var(--bg-deep)]/95 backdrop-blur border-b border-white/10 shadow-lg py-3"
+          : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
         <Logo />
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -198,7 +198,7 @@ function Navbar() {
         <div className="hidden lg:block">
           <a
             href="#planos"
-            className="inline-flex items-center gap-2 rounded-full bg-[var(--neon)] text-[var(--bg-deep)] font-semibold text-sm px-5 py-2.5 hover:bg-[var(--neon-soft)] transition-colors shadow-[0_0_20px_-4px_var(--neon)]"
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--neon)] text-[var(--bg-deep)] font-semibold text-sm px-5 py-2 hover:bg-[var(--neon-soft)] transition-colors shadow-[0_0_20px_-4px_var(--neon)]"
           >
             <Zap size={16} strokeWidth={2.5} />
             Contrate Online
@@ -215,7 +215,7 @@ function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-[var(--bg-deep)] border-t border-white/10 px-5 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-[var(--bg-deep)] border-t border-white/10 px-5 py-4 flex flex-col gap-4 mt-3">
           {NAV_LINKS.map((l) => (
             <a
               key={l.label}
@@ -241,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO (AJUSTADO PARA A MEDIDA RESPONSIVA 1920x800)                  */
+/*  HERO BANNER (1920x800 RESPONSIVO)                                   */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -260,9 +260,9 @@ function Hero() {
   };
 
   return (
-    <section id="home" className="relative font-body w-full bg-[var(--bg-deep)] pt-16 md:pt-20">
-      {/* CONTAINER RESPONSIVO COM PROPORÇÃO EXATA DE 1920x800 */}
-      <div className="relative w-full aspect-[1920/800] max-h-[85vh] overflow-hidden bg-black/40 flex items-center justify-center">
+    <section id="home" className="relative font-body w-full bg-[var(--bg-deep)] overflow-hidden">
+      {/* MANTÉM A PROPORÇÃO EXATA 1920x800 */}
+      <div className="relative w-full aspect-[1920/800] min-h-[280px] max-h-[800px] flex items-center justify-center">
         {SLIDES.map((slide, i) => (
           <div
             key={i}
@@ -273,7 +273,7 @@ function Hero() {
             <img
               src={slide.image}
               alt={slide.alt}
-              className="w-full h-full object-contain md:object-cover object-center"
+              className="w-full h-full object-cover object-center"
             />
           </div>
         ))}
@@ -281,21 +281,21 @@ function Hero() {
         {/* SETAS LATERAIS */}
         <button
           onClick={() => go(-1)}
-          className="z-30 absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/20 transition backdrop-blur"
+          className="z-30 absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
           aria-label="Banner anterior"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         <button
           onClick={() => go(1)}
-          className="z-30 absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/20 transition backdrop-blur"
+          className="z-30 absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
           aria-label="Próximo banner"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* PONTINHOS DO CARROSSEL */}
-        <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        {/* PONTINHOS NAVEGADORES */}
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
           {SLIDES.map((_, i) => (
             <button
               key={i}
