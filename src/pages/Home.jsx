@@ -66,25 +66,13 @@ const NAV_LINKS = [
 
 const SLIDES = [
   {
-    badge: "100% fibra óptica",
-    title: "Assine agora\na melhor internet\nda região!",
-    sub: "Velocidade estável, sem quedas, com instalação rápida e suporte que atende de verdade.",
-    // Substitua pela URL da sua primeira imagem
-    image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=1920&q=80",
+    image: "https://ibb.co/HfHKFhnz",
   },
   {
-    badge: "Wi-Fi 6 incluso",
-    title: "Sua casa toda\nconectada, sem\ntravar.",
-    sub: "Equipamentos premium inclusos em todos os planos, sem taxa escondida.",
-    // Substitua pela URL da sua segunda imagem
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80",
+    image: "https://ibb.co/dwt2L3Ht",
   },
   {
-    badge: "Suporte humanizado",
-    title: "Gente de verdade\nquando você\nprecisa.",
-    sub: "Atendimento local, rápido e sem robô repetindo menu sem fim.",
-    // Substitua pela URL da sua terceira imagem
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80",
+    image: "hhttps://ibb.co/gLbZ06JL",
   },
 ];
 
