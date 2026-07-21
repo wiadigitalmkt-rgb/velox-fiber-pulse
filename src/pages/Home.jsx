@@ -27,7 +27,7 @@ import {
 /*  TOKENS & CSS REESTRUTURADO EM AZUL                                */
 /* ------------------------------------------------------------------ */
 const FONT_IMPORT = `
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
 :root{
   --bg-deep: #00132b;
   --bg-base: #00244e;
@@ -241,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO BANNER                                                       */
+/*  HERO BANNER (COM DEGRADÊ NA BASE)                                   */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -294,7 +294,7 @@ function Hero() {
         </button>
 
         {/* PONTINHOS NAVEGADORES */}
-        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-2">
           {SLIDES.map((_, i) => (
             <button
               key={i}
@@ -309,23 +309,27 @@ function Hero() {
             />
           ))}
         </div>
+
+        {/* GRADIENTE DE TRANSIÇÃO NA BASE (EFEITO IGUAL AO DO PRINT) */}
+        <div className="absolute bottom-0 left-0 w-full h-20 sm:h-32 bg-gradient-to-t from-[var(--bg-deep)] to-transparent z-20 pointer-events-none" />
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  PLANOS                                                              */
+/*  PLANOS (TÍTULO EXPANDIDO & IMPACTANTE)                            */
 /* ------------------------------------------------------------------ */
 function Plans() {
   return (
-    <section id="planos" className="bg-[var(--bg-deep)] font-body py-20 px-5 md:px-8">
+    <section id="planos" className="bg-[var(--bg-deep)] font-body pt-6 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-white text-center mb-3">
+        {/* TÍTULO AUMENTADO NO ESTILO DO PRINT */}
+        <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white text-center tracking-tight mb-4">
           CONHEÇA NOSSOS PLANOS DE{" "}
           <span className="text-[var(--blue-accent)]">INTERNET</span>
         </h2>
-        <p className="text-[var(--mist)]/70 text-center max-w-xl mx-auto mb-14">
+        <p className="text-[var(--mist)]/75 text-center text-base sm:text-lg max-w-2xl mx-auto mb-14">
           Fibra óptica de ponta a ponta, equipamentos premium inclusos e sem
           fidelidade escondida no contrato.
         </p>
