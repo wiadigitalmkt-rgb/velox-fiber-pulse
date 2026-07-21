@@ -19,7 +19,6 @@ import {
   Instagram,
   Linkedin,
   MessageCircle,
-  RefreshCw,
   Zap,
 } from "lucide-react";
 
@@ -394,12 +393,11 @@ function PlanItem({ icon: Icon, text }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  EMPRESARIAL (AGORA COM BANNER DE IMAGEM)                           */
+/*  EMPRESARIAL (BANNER DE IMAGEM)                                     */
 /* ------------------------------------------------------------------ */
 function Business() {
   return (
     <section id="sobre" className="font-body">
-      {/* NOVO BANNER DE IMAGEM */}
       <div className="w-full overflow-hidden leading-none">
         <a href="#contato" className="block w-full">
           <img
@@ -441,7 +439,7 @@ function Business() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  COBERTURA + RENOVA                                                  */
+/*  COBERTURA + PLANO RENOVA (AGORA AMBOS COM BANNER DE IMAGEM)        */
 /* ------------------------------------------------------------------ */
 function CoverageAndRenew() {
   const [form, setForm] = useState({ nome: "", endereco: "", cep: "" });
@@ -455,6 +453,7 @@ function CoverageAndRenew() {
 
   return (
     <section className="font-body">
+      {/* CONSULTA DE COBERTURA */}
       <div className="bg-[var(--bg-panel)] py-10 px-5 md:px-8 border-y border-white/10">
         <div className="max-w-5xl mx-auto">
           <h3 className="text-center text-white font-display font-bold text-xl mb-6">
@@ -492,28 +491,15 @@ function CoverageAndRenew() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-[var(--bg-base)] via-[var(--bg-panel)] to-[var(--blue-soft)]/40 py-14 px-5 md:px-8">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
-          <div className="w-14 h-14 rounded-2xl bg-[var(--blue-accent)]/20 flex items-center justify-center shrink-0 border border-[var(--blue-accent)]/30">
-            <RefreshCw size={26} className="text-[var(--blue-accent)]" />
-          </div>
-          <div className="flex-1 text-center md:text-left">
-            <h3 className="font-display font-bold text-2xl text-white mb-2">
-              PLANO RENOVA
-            </h3>
-            <p className="text-[var(--mist)]/80 text-sm max-w-md">
-              Você que já é cliente WiaFibra, temos uma oferta ainda mais{" "}
-              <strong className="text-white">imperdível</strong> para você
-              continuar conectado.
-            </p>
-          </div>
-          <a
-            href="#contato"
-            className="rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-6 py-3 whitespace-nowrap hover:bg-[var(--blue-soft)] transition shadow-md"
-          >
-            Entre em contato e saiba mais!
-          </a>
-        </div>
+      {/* BANNER PLANO RENOVA */}
+      <div className="w-full overflow-hidden leading-none">
+        <a href="#contato" className="block w-full">
+          <img
+            src="https://i.ibb.co/TDjNCqWc/plano-renova.png"
+            alt="Banner Plano Renova WiaFibra"
+            className="w-full h-auto object-cover block"
+          />
+        </a>
       </div>
     </section>
   );
