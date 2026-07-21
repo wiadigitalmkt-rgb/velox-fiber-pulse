@@ -232,7 +232,7 @@ function Navbar() {
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-5 py-2.5"
           >
             <Zap size={16} strokeWidth={2.5} />
-            Contrate Online
+            Central do assinante
           </a>
         </div>
       )}
