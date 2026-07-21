@@ -124,7 +124,7 @@ const FAQS = [
   },
   {
     q: "Quais são os produtos que a WiaFibra trabalha?",
-    a: "Trabalhamos com internet residencial em fibra óptica, planos empresariais personalizados, IP fixo, link dedicado e suporte técnico especializado.",
+    a: "Trabalhamos com internet residencial em fibra óptica, planos empresariais personalizados, IP fixo, link dedicated e suporte técnico especializado.",
   },
 ];
 
@@ -145,10 +145,10 @@ const CITIES = [
 function Logo() {
   return (
     <div className="flex items-center gap-2 select-none">
-      <div className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--bg-panel)] border border-[var(--neon)]/40">
+      <div className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--bg-panel)] border border-[var(--neon)]/40 shadow-md">
         <Wifi size={20} className="text-[var(--neon)]" strokeWidth={2.5} />
       </div>
-      <span className="font-display font-bold text-xl tracking-tight text-white">
+      <span className="font-display font-bold text-xl tracking-tight text-white drop-shadow">
         Wia<span className="text-[var(--neon)]">Fibra</span>
       </span>
     </div>
@@ -170,10 +170,10 @@ function Navbar() {
 
   return (
     <header
-      className={`absolute top-0 left-0 w-full z-50 font-body transition-colors duration-300 ${
+      className={`absolute top-0 left-0 w-full z-50 font-body transition-all duration-300 ${
         scrolled
-          ? "bg-[var(--bg-deep)]/90 backdrop-blur border-b border-white/10 !fixed"
-          : "bg-transparent"
+          ? "bg-[var(--bg-deep)]/95 backdrop-blur border-b border-white/10 !fixed shadow-lg"
+          : "bg-gradient-to-b from-black/80 via-black/40 to-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
@@ -187,7 +187,7 @@ function Navbar() {
               className={`text-sm font-medium tracking-wide transition-colors ${
                 i === 0
                   ? "text-white border-b-2 border-[var(--neon)] pb-1"
-                  : "text-[var(--mist)]/80 hover:text-[var(--neon)]"
+                  : "text-white/90 hover:text-[var(--neon)]"
               }`}
             >
               {l.label}
@@ -241,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO (CARROSSEL DE BANNERS EXCLUSIVOS APENAS COM IMAGEM)            */
+/*  HERO (AJUSTADO PARA A MEDIDA RESPONSIVA 1920x800)                  */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -260,55 +260,57 @@ function Hero() {
   };
 
   return (
-    <section id="home" className="relative font-body w-full h-[450px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden bg-[var(--bg-deep)]">
-      {/* BANNERS EM TELA CHEIA */}
-      {SLIDES.map((slide, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            i === idx ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
-        >
-          <img
-            src={slide.image}
-            alt={slide.alt}
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-      ))}
-
-      {/* CONTROLES DO CARROSSEL (PONTINHOS NA PARTE INFERIOR) */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-        {SLIDES.map((_, i) => (
-          <button
+    <section id="home" className="relative font-body w-full bg-[var(--bg-deep)] pt-16 md:pt-20">
+      {/* CONTAINER RESPONSIVO COM PROPORÇÃO EXATA DE 1920x800 */}
+      <div className="relative w-full aspect-[1920/800] max-h-[85vh] overflow-hidden bg-black/40 flex items-center justify-center">
+        {SLIDES.map((slide, i) => (
+          <div
             key={i}
-            onClick={() => {
-              clearInterval(timer.current);
-              setIdx(i);
-            }}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              i === idx ? "w-8 bg-[var(--neon)]" : "w-2.5 bg-white/50 hover:bg-white"
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              i === idx ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
-            aria-label={`Banner ${i + 1}`}
-          />
+          >
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="w-full h-full object-contain md:object-cover object-center"
+            />
+          </div>
         ))}
-      </div>
 
-      {/* SETAS LATERAIS */}
-      <button
-        onClick={() => go(-1)}
-        className="z-30 absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
-        aria-label="Banner anterior"
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <button
-        onClick={() => go(1)}
-        className="z-30 absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
-        aria-label="Próximo banner"
-      >
-        <ChevronRight size={24} />
-      </button>
+        {/* SETAS LATERAIS */}
+        <button
+          onClick={() => go(-1)}
+          className="z-30 absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/20 transition backdrop-blur"
+          aria-label="Banner anterior"
+        >
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+        <button
+          onClick={() => go(1)}
+          className="z-30 absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/20 transition backdrop-blur"
+          aria-label="Próximo banner"
+        >
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        {/* PONTINHOS DO CARROSSEL */}
+        <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                clearInterval(timer.current);
+                setIdx(i);
+              }}
+              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
+                i === idx ? "w-6 sm:w-8 bg-[var(--neon)]" : "w-2 sm:w-2.5 bg-white/50 hover:bg-white"
+              }`}
+              aria-label={`Banner ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
