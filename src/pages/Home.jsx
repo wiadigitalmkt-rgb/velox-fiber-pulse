@@ -51,7 +51,7 @@ const BANNERS = [
     alt: "Um mundo de Entretenimento na sua casa",
   },
   {
-    image: "https://i.ibb.co/C091r4V/banner-gamer-129.jpg",
+    image: "https://ibb.co/k2RCX6MG",
     alt: "Plano Gamer 1000 Mega por R$ 129,90",
   },
 ];
