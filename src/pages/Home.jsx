@@ -54,19 +54,19 @@ const SLIDES = [
     badge: "Indique e Ganhe",
     title: "Indicou e instalou?\nGanhou R$ 30,00!",
     sub: "A cada amigo que contratar e concluir a instalação você ganha, sem limite!",
-    image: "https://i.ibb.co/L50P80T/banner-indique-ganhe.jpg",
+    image: "https://ibb.co/HfHKFhnz",
   },
   {
     badge: "Entretenimento",
     title: "Um mundo de\nentretenimento na sua casa",
     sub: "Filmes, séries e conteúdos exclusivos para toda a família.",
-    image: "https://i.ibb.co/6PqvhqS/banner-entretenimento.jpg",
+    image: "https://ibb.co/dwt2L3Ht",
   },
   {
     badge: "Plano Gamer",
     title: "Velocidade máxima\n1000 MEGA por R$ 129,90",
     sub: "Jogue online com mais estabilidade, menos lag e Wi-Fi 6 de alta performance.",
-    image: "https://i.ibb.co/C091r4V/banner-gamer-129.jpg",
+    image: "https://ibb.co/gLbZ06JL",
   },
 ];
 
