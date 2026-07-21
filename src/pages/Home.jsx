@@ -631,7 +631,7 @@ function MapSection() {
     <section className="bg-[var(--bg-base)] font-body py-16 px-5 md:px-8">
       <div className="max-w-5xl mx-auto">
         <h3 className="text-center font-display font-bold text-2xl text-white mb-6">
-          Veja em quais cidades trabalhamos no RS
+          Confira nossa área de cobertura
         </h3>
         <div className="flex flex-wrap justify-center gap-3 mb-6">
           {CITIES.map((c2, i) => (
