@@ -9,7 +9,6 @@ import {
   Router,
   Headphones,
   ShieldCheck,
-  Building2,
   Network,
   RadioTower,
   MapPin,
@@ -32,6 +31,7 @@ const FONT_IMPORT = `
   --bg-base: #00244e;
   --bg-panel: #003b85;
   --blue-accent: #1e90ff;
+  --blue-neon: #00d2ff;
   --blue-soft: #4a78c4;
   --orange: #ff7a1a;
   --mist: #e2eaf4;
@@ -69,18 +69,24 @@ const PLANS = [
     speed: "600",
     equip: "AC1200",
     wifi: "Wi-Fi 5 Premium",
+    price: "99,90",
+    afterPrice: "104,90",
     highlight: false,
   },
   {
     speed: "800",
     equip: "AX1800",
     wifi: "Wi-Fi 6 Premium",
+    price: "149,90",
+    afterPrice: "154,90",
     highlight: true,
   },
   {
     speed: "1000",
     equip: "AX3000",
     wifi: "Wi-Fi 6 Premium",
+    price: "189,90",
+    afterPrice: "194,90",
     highlight: false,
   },
 ];
@@ -155,26 +161,13 @@ function Logo() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  NAVBAR                                                              */
+/*  NAVBAR (SEM FIXAR AO ROLAR)                                         */
 /* ------------------------------------------------------------------ */
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 font-body transition-all duration-300 ${
-        scrolled
-          ? "bg-[var(--bg-deep)]/95 backdrop-blur border-b border-white/10 shadow-lg py-3"
-          : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5"
-      }`}
-    >
+    <header className="absolute top-0 left-0 w-full z-50 font-body py-5 bg-gradient-to-b from-black/80 via-black/30 to-transparent">
       <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
         <Logo />
 
@@ -276,7 +269,6 @@ function Hero() {
           </div>
         ))}
 
-        {/* SETAS LATERAIS */}
         <button
           onClick={() => go(-1)}
           className="z-30 absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
@@ -292,7 +284,6 @@ function Hero() {
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* PONTINHOS NAVEGADORES */}
         <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
           {SLIDES.map((_, i) => (
             <button
@@ -309,7 +300,6 @@ function Hero() {
           ))}
         </div>
 
-        {/* LINHA SEPARADORA/DIVISÃO */}
         <div className="absolute bottom-0 left-0 w-full h-[4px] sm:h-[6px] bg-[var(--blue-accent)] z-40 shadow-[0_0_12px_var(--blue-accent)]" />
       </div>
     </section>
@@ -317,62 +307,80 @@ function Hero() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PLANOS                                                              */
+/*  PLANOS (IGUAL AO SITE MODELO: MAIS FINA, PREÇOS E BOTÃO NEON)      */
 /* ------------------------------------------------------------------ */
 function Plans() {
   return (
-    <section id="planos" className="bg-[var(--bg-deep)] font-body py-12 md:py-16 px-5 md:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white text-center tracking-tight mb-4">
+    <section id="planos" className="bg-[var(--bg-deep)] font-body py-16 px-5 md:px-8">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white text-center tracking-tight mb-12">
           CONHEÇA NOSSOS PLANOS DE{" "}
-          <span className="text-[var(--blue-accent)]">INTERNET</span>
+          <span className="text-[var(--blue-neon)]">INTERNET</span>
         </h2>
-        <p className="text-[var(--mist)]/75 text-center text-base sm:text-lg max-w-2xl mx-auto mb-14">
-          Fibra óptica de ponta a ponta, equipamentos premium inclusos e sem
-          fidelidade escondida no contrato.
-        </p>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {PLANS.map((p) => (
             <div
               key={p.speed}
-              className={`relative rounded-3xl border p-8 flex flex-col transition-all duration-300 hover:-translate-y-1.5 ${
+              className={`relative rounded-3xl border p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${
                 p.highlight
-                  ? "bg-[var(--bg-panel)] border-[var(--blue-accent)] shadow-[0_0_40px_-10px_rgba(30,144,255,0.4)] md:scale-105"
-                  : "bg-[var(--bg-base)] border-white/10 hover:border-[var(--blue-accent)]/50"
+                  ? "bg-[var(--bg-panel)] border-[var(--blue-neon)] shadow-[0_0_30px_-5px_rgba(0,210,255,0.3)] md:scale-105 z-10"
+                  : "bg-[#001c3d] border-white/10 hover:border-[var(--blue-neon)]/50"
               }`}
             >
               {p.highlight && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--orange)] text-white text-xs font-bold px-4 py-1 uppercase tracking-wide">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--orange)] text-white text-[11px] font-extrabold px-4 py-1 uppercase tracking-wider shadow-md">
                   Mais Escolhido
                 </span>
               )}
-              <div className="mb-6">
-                <span className="font-display font-bold text-5xl text-white">
-                  {p.speed}
-                </span>
-                <p className="font-display font-bold text-lg tracking-widest text-[var(--blue-accent)]">
-                  MEGA
-                </p>
+
+              <div>
+                {/* VELOCIDADE */}
+                <div className="text-center my-2">
+                  <span className="font-display font-black text-5xl sm:text-6xl text-white tracking-tight">
+                    {p.speed}
+                  </span>
+                  <p className="font-display font-extrabold text-xl tracking-widest text-[var(--blue-neon)] mt-1 uppercase">
+                    MEGA
+                  </p>
+                </div>
+
+                {/* RECURSOS */}
+                <ul className="space-y-4 my-8">
+                  <PlanItem icon={Wifi} text="100% Fibra Óptica" />
+                  <PlanItem icon={Router} text={`Equipamento ${p.equip}`} />
+                  <PlanItem icon={RadioTower} text={p.wifi} />
+                  <PlanItem icon={Headphones} text="Suporte Humanizado" />
+                </ul>
+
+                {/* BOTÃO BENEFÍCIOS */}
+                <div className="mb-6">
+                  <button className="w-full text-xs font-semibold text-[var(--mist)] border border-white/20 rounded-full py-2 px-3 hover:bg-white/5 transition">
+                    Saiba mais sobre os benefícios!
+                  </button>
+                </div>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
-                <PlanItem icon={Wifi} text="100% Fibra Óptica" />
-                <PlanItem icon={Router} text={`Equipamento ${p.equip}`} />
-                <PlanItem icon={RadioTower} text={p.wifi} />
-                <PlanItem icon={Headphones} text="Suporte Humanizado" />
-              </ul>
+              {/* PREÇO E BOTÃO NEON */}
+              <div className="pt-2 border-t border-white/10 text-center">
+                <div className="flex items-baseline justify-center gap-1 my-3">
+                  <span className="text-sm font-bold text-white/80">R$</span>
+                  <span className="font-display font-black text-4xl text-white">
+                    {p.price}
+                  </span>
+                </div>
+                <p className="text-[10px] text-[var(--mist)]/60 leading-tight mb-5 px-2">
+                  *Valor pagando por PIX ou DDA até o vencimento <br />
+                  após o vencimento por R${p.afterPrice}
+                </p>
 
-              <a
-                href="#contato"
-                className={`text-center rounded-full font-semibold text-sm px-6 py-3 transition ${
-                  p.highlight
-                    ? "bg-[var(--blue-accent)] text-white hover:bg-[var(--blue-soft)] shadow-lg"
-                    : "bg-white/5 text-white border border-white/15 hover:border-[var(--blue-accent)]/60"
-                }`}
-              >
-                Contratar plano
-              </a>
+                <a
+                  href="#contato"
+                  className="block w-full text-center rounded-full font-black text-xs sm:text-sm tracking-wider uppercase py-3.5 bg-[var(--blue-neon)] text-[#00132b] hover:bg-white hover:shadow-[0_0_25px_#ffffff] transition-all duration-300 shadow-[0_0_20px_rgba(0,210,255,0.6)]"
+                >
+                  CONTRATE AGORA!
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -383,9 +391,9 @@ function Plans() {
 
 function PlanItem({ icon: Icon, text }) {
   return (
-    <li className="flex items-center gap-3 text-sm text-[var(--mist)]/90">
-      <span className="w-7 h-7 rounded-lg bg-[var(--blue-accent)]/15 flex items-center justify-center shrink-0">
-        <Icon size={14} className="text-[var(--blue-accent)]" />
+    <li className="flex items-center gap-3 text-xs sm:text-sm text-[var(--mist)]/90">
+      <span className="w-6 h-6 rounded-md bg-[var(--blue-neon)]/15 flex items-center justify-center shrink-0">
+        <Icon size={14} className="text-[var(--blue-neon)]" />
       </span>
       {text}
     </li>
@@ -411,17 +419,17 @@ function Business() {
       <div className="bg-[var(--bg-base)] py-16 px-5 md:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-display font-bold text-3xl text-white text-center mb-12">
-            PLANOS <span className="text-[var(--blue-accent)]">PERSONALIZADOS</span>
+            PLANOS <span className="text-[var(--blue-neon)]">PERSONALIZADOS</span>
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {BUSINESS_FEATURES.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="rounded-2xl bg-[var(--bg-panel)]/60 border border-white/10 p-6 hover:border-[var(--blue-accent)]/50 transition-colors"
+                className="rounded-2xl bg-[var(--bg-panel)]/60 border border-white/10 p-6 hover:border-[var(--blue-neon)]/50 transition-colors"
               >
-                <div className="w-11 h-11 rounded-xl bg-[var(--blue-accent)]/15 flex items-center justify-center mb-4">
-                  <Icon size={20} className="text-[var(--blue-accent)]" />
+                <div className="w-11 h-11 rounded-xl bg-[var(--blue-neon)]/15 flex items-center justify-center mb-4">
+                  <Icon size={20} className="text-[var(--blue-neon)]" />
                 </div>
                 <h4 className="font-display font-semibold text-white mb-2">
                   {title}
@@ -439,7 +447,7 @@ function Business() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  COBERTURA + PLANO RENOVA (AGORA AMBOS COM BANNER DE IMAGEM)        */
+/*  COBERTURA COM CARD FLUTUANTE (ESPAÇAMENTO) + PLANO RENOVA           */
 /* ------------------------------------------------------------------ */
 function CoverageAndRenew() {
   const [form, setForm] = useState({ nome: "", endereco: "", cep: "" });
@@ -452,47 +460,45 @@ function CoverageAndRenew() {
   };
 
   return (
-    <section className="font-body">
-      {/* CONSULTA DE COBERTURA */}
-      <div className="bg-[var(--bg-panel)] py-10 px-5 md:px-8 border-y border-white/10">
-        <div className="max-w-5xl mx-auto">
-          <h3 className="text-center text-white font-display font-bold text-xl mb-6">
-            Consulte área de cobertura
-          </h3>
-          <form
-            onSubmit={submit}
-            className="flex flex-col md:flex-row gap-3 md:items-center"
+    <section className="font-body bg-[var(--bg-deep)] py-12 px-5 md:px-8">
+      {/* CARD FLUTUANTE COM ESPAÇAMENTO */}
+      <div className="max-w-5xl mx-auto bg-[var(--bg-panel)] rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl mb-14">
+        <h3 className="text-center text-white font-display font-bold text-2xl md:text-3xl mb-8">
+          Consulte área de cobertura
+        </h3>
+        <form
+          onSubmit={submit}
+          className="flex flex-col md:flex-row gap-4 md:items-center justify-between"
+        >
+          <input
+            value={form.nome}
+            onChange={(e) => setForm({ ...form, nome: e.target.value })}
+            placeholder="Nome"
+            className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-6 py-3.5 outline-none focus:ring-2 focus:ring-[var(--blue-neon)]"
+          />
+          <input
+            value={form.endereco}
+            onChange={(e) => setForm({ ...form, endereco: e.target.value })}
+            placeholder="Endereço"
+            className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-6 py-3.5 outline-none focus:ring-2 focus:ring-[var(--blue-neon)]"
+          />
+          <input
+            value={form.cep}
+            onChange={(e) => setForm({ ...form, cep: e.target.value })}
+            placeholder="CEP"
+            className="md:w-44 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-6 py-3.5 outline-none focus:ring-2 focus:ring-[var(--blue-neon)]"
+          />
+          <button
+            type="submit"
+            className="rounded-full bg-[var(--blue-accent)] hover:bg-[var(--blue-neon)] hover:text-[#00132b] text-white font-bold text-sm px-8 py-3.5 transition-all duration-300 shadow-[0_0_15px_rgba(30,144,255,0.4)]"
           >
-            <input
-              value={form.nome}
-              onChange={(e) => setForm({ ...form, nome: e.target.value })}
-              placeholder="Nome"
-              className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
-            />
-            <input
-              value={form.endereco}
-              onChange={(e) => setForm({ ...form, endereco: e.target.value })}
-              placeholder="Endereço"
-              className="flex-1 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
-            />
-            <input
-              value={form.cep}
-              onChange={(e) => setForm({ ...form, cep: e.target.value })}
-              placeholder="CEP"
-              className="md:w-40 rounded-full bg-white text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-5 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-[var(--blue-accent)] text-white font-semibold text-sm px-7 py-3 hover:bg-[var(--blue-soft)] transition shadow-md"
-            >
-              {sent ? "Enviado!" : "Enviar"}
-            </button>
-          </form>
-        </div>
+            {sent ? "Enviado!" : "Enviar"}
+          </button>
+        </form>
       </div>
 
       {/* BANNER PLANO RENOVA */}
-      <div className="w-full overflow-hidden leading-none">
+      <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden leading-none shadow-2xl">
         <a href="#contato" className="block w-full">
           <img
             src="https://i.ibb.co/TDjNCqWc/plano-renova.png"
@@ -520,7 +526,7 @@ function FaqItem({ q, a, open, onClick }) {
         </span>
         <ChevronDown
           size={20}
-          className={`shrink-0 text-[var(--blue-accent)] transition-transform duration-300 ${
+          className={`shrink-0 text-[var(--blue-neon)] transition-transform duration-300 ${
             open ? "rotate-180" : ""
           }`}
         />
@@ -553,7 +559,7 @@ function FaqAndContact() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14">
         <div>
           <h3 className="font-display font-bold text-3xl text-white mb-8">
-            Perguntas <span className="text-[var(--blue-accent)]">Frequentes</span>
+            Perguntas <span className="text-[var(--blue-neon)]">Frequentes</span>
           </h3>
           <div>
             {FAQS.map((f, i) => (
@@ -578,7 +584,7 @@ function FaqAndContact() {
               value={form.nome}
               onChange={(e) => setForm({ ...form, nome: e.target.value })}
               placeholder="Nome"
-              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
+              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-neon)]"
             />
             <input
               required
@@ -586,7 +592,7 @@ function FaqAndContact() {
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="E-mail"
-              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-accent)]"
+              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none focus:ring-2 focus:ring-[var(--blue-neon)]"
             />
             <textarea
               required
@@ -594,7 +600,7 @@ function FaqAndContact() {
               onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
               placeholder="Mensagem"
               rows={4}
-              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-[var(--blue-accent)]"
+              className="rounded-xl bg-white/95 text-[var(--bg-deep)] placeholder:text-[var(--bg-deep)]/50 text-sm px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-[var(--blue-neon)]"
             />
             <button
               type="submit"
@@ -630,7 +636,7 @@ function MapSection() {
               className={`rounded-full text-sm font-semibold px-5 py-2.5 transition ${
                 city === i
                   ? "bg-[var(--blue-accent)] text-white shadow-md"
-                  : "bg-[var(--bg-panel)] text-[var(--mist)]/80 border border-white/10 hover:border-[var(--blue-accent)]/50"
+                  : "bg-[var(--bg-panel)] text-[var(--mist)]/80 border border-white/10 hover:border-[var(--blue-neon)]/50"
               }`}
             >
               {c2.name}
@@ -679,7 +685,7 @@ function Footer() {
               <a
                 key={i}
                 href="#"
-                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[var(--blue-accent)]/60 hover:text-[var(--blue-accent)] text-white transition"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[var(--blue-neon)]/60 hover:text-[var(--blue-neon)] text-white transition"
               >
                 <Icon size={16} />
               </a>
@@ -693,16 +699,16 @@ function Footer() {
           </h4>
           <ul className="space-y-3 text-sm text-[var(--mist)]/75">
             <li className="flex items-center gap-2">
-              <Phone size={15} className="text-[var(--blue-accent)]" />
+              <Phone size={15} className="text-[var(--blue-neon)]" />
               (16) 3509-8888
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={15} className="text-[var(--blue-accent)]" />
+              <Mail size={15} className="text-[var(--blue-neon)]" />
               atendimento@wiafibra.com.br
             </li>
             {CITIES.map((c) => (
               <li key={c.name} className="flex items-start gap-2">
-                <MapPin size={15} className="text-[var(--blue-accent)] mt-0.5 shrink-0" />
+                <MapPin size={15} className="text-[var(--blue-neon)] mt-0.5 shrink-0" />
                 <span>{c.address}</span>
               </li>
             ))}
@@ -716,7 +722,7 @@ function Footer() {
           <ul className="space-y-3 text-sm text-[var(--mist)]/75">
             {NAV_LINKS.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className="hover:text-[var(--blue-accent)] transition-colors">
+                <a href={l.href} className="hover:text-[var(--blue-neon)] transition-colors">
                   {l.label}
                 </a>
               </li>
@@ -739,7 +745,7 @@ function Footer() {
 function WhatsAppFloat() {
   return (
     <a
-      href="https://wa.me/5516999999999"
+      href="https://wa.me/551635098888"
       target="_blank"
       rel="noreferrer"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-2xl hover:scale-105 transition-transform"
@@ -751,7 +757,7 @@ function WhatsAppFloat() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  APP                                                                 */
+/*  APP PRINCIPAL                                                       */
 /* ------------------------------------------------------------------ */
 export default function App() {
   return (
