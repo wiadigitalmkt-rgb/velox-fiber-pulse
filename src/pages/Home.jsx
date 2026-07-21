@@ -241,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO BANNER (COM A LINHA DE DIVISÃO)                              */
+/*  HERO BANNER                                                         */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -310,7 +310,7 @@ function Hero() {
           ))}
         </div>
 
-        {/* LINHA SEPARADORA/DIVISÃO (EXATAMENTE COMO NO ZOOM DO PRINT) */}
+        {/* LINHA SEPARADORA/DIVISÃO */}
         <div className="absolute bottom-0 left-0 w-full h-[4px] sm:h-[6px] bg-[var(--blue-accent)] z-40 shadow-[0_0_12px_var(--blue-accent)]" />
       </div>
     </section>
@@ -394,35 +394,20 @@ function PlanItem({ icon: Icon, text }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  EMPRESARIAL                                                         */
+/*  EMPRESARIAL (AGORA COM BANNER DE IMAGEM)                           */
 /* ------------------------------------------------------------------ */
 function Business() {
   return (
     <section id="sobre" className="font-body">
-      <div className="relative bg-gradient-to-r from-[var(--bg-panel)] via-[var(--bg-panel)] to-[var(--blue-soft)]/80 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 grid md:grid-cols-2 gap-8 items-center">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
-              <Building2 size={28} className="text-white" />
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-2xl md:text-3xl text-white">
-                Plano Empresarial
-              </h3>
-              <p className="text-white/85 text-sm mt-1">
-                Projeto <strong>personalizado</strong> para sua empresa.
-              </p>
-            </div>
-          </div>
-          <div className="flex md:justify-end">
-            <a
-              href="#contato"
-              className="rounded-full bg-white text-[var(--bg-deep)] font-semibold text-sm px-6 py-3 hover:bg-white/90 transition shadow-md"
-            >
-              Falar com especialista
-            </a>
-          </div>
-        </div>
+      {/* NOVO BANNER DE IMAGEM */}
+      <div className="w-full overflow-hidden leading-none">
+        <a href="#contato" className="block w-full">
+          <img
+            src="https://i.ibb.co/SX3zmcnd/plano-empresarial.png"
+            alt="Banner Plano Empresarial WiaFibra"
+            className="w-full h-auto object-cover block"
+          />
+        </a>
       </div>
 
       <div className="bg-[var(--bg-base)] py-16 px-5 md:px-8">
