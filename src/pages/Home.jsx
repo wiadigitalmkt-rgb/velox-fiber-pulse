@@ -41,33 +41,28 @@ const FONT_IMPORT = `
 .font-body{font-family:'Inter',sans-serif;}
 `;
 
+/* LINKS DOS BANNERS */
+const SLIDES = [
+  {
+    image: "https://i.ibb.co/gLbZ06JL/banner1.jpg",
+    alt: "Plano Gamer 1000 Mega por R$ 129,90",
+  },
+  {
+    image: "https://i.ibb.co/dwt2L3Ht/banner2.jpg",
+    alt: "Um mundo de Entretenimento na sua casa",
+  },
+  {
+    image: "https://i.ibb.co/HfHKFhnz/banner3.jpg",
+    alt: "Indique e Ganhe R$ 30,00 por indicação",
+  },
+];
+
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "Sobre", href: "#sobre" },
   { label: "Planos", href: "#planos" },
   { label: "Fale Conosco", href: "#contato" },
   { label: "Trabalhe Conosco", href: "#trabalhe" },
-];
-
-const SLIDES = [
-  {
-    badge: "Indique e Ganhe",
-    title: "Indicou e instalou?\nGanhou R$ 30,00!",
-    sub: "A cada amigo que contratar e concluir a instalação você ganha, sem limite!",
-    image: "https://ibb.co/HfHKFhnz",
-  },
-  {
-    badge: "Entretenimento",
-    title: "Um mundo de\nentretenimento na sua casa",
-    sub: "Filmes, séries e conteúdos exclusivos para toda a família.",
-    image: "https://ibb.co/dwt2L3Ht",
-  },
-  {
-    badge: "Plano Gamer",
-    title: "Velocidade máxima\n1000 MEGA por R$ 129,90",
-    sub: "Jogue online com mais estabilidade, menos lag e Wi-Fi 6 de alta performance.",
-    image: "https://ibb.co/gLbZ06JL",
-  },
 ];
 
 const PLANS = [
@@ -246,7 +241,7 @@ function Navbar() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  HERO (CARROSSEL COM BANNERS DE FUNDO)                               */
+/*  HERO (CARROSSEL DE BANNERS EXCLUSIVOS APENAS COM IMAGEM)            */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -265,8 +260,8 @@ function Hero() {
   };
 
   return (
-    <section id="home" className="relative font-body min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
-      {/* IMAGENS DE FUNDO DOS BANNERS */}
+    <section id="home" className="relative font-body w-full h-[450px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden bg-[var(--bg-deep)]">
+      {/* BANNERS EM TELA CHEIA */}
       {SLIDES.map((slide, i) => (
         <div
           key={i}
@@ -274,74 +269,42 @@ function Hero() {
             i === idx ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
-          {/* Imagem principal do Banner */}
           <img
             src={slide.image}
-            alt={slide.title}
+            alt={slide.alt}
             className="w-full h-full object-cover object-center"
           />
-          {/* Overlay escuro/esverdeado para garantir a leitura do texto */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-deep)]/90 via-[var(--bg-deep)]/60 to-transparent" />
         </div>
       ))}
 
-      {/* CONTEÚDO SOBREPOSTO */}
-      <div className="relative z-20 max-w-7xl mx-auto px-5 md:px-8 pt-32 pb-20 w-full">
-        <div className="max-w-2xl">
-          <span className="inline-block rounded-full bg-[var(--neon)] text-[var(--bg-deep)] text-xs font-bold tracking-wide px-4 py-1.5 mb-6 shadow-[0_0_15px_rgba(0,230,77,0.4)]">
-            {SLIDES[idx].badge}
-          </span>
-          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-white whitespace-pre-line mb-5 drop-shadow-md">
-            {SLIDES[idx].title}
-          </h1>
-          <p className="text-[var(--mist)] text-base md:text-lg max-w-md mb-8 drop-shadow">
-            {SLIDES[idx].sub}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="#planos"
-              className="rounded-full bg-[var(--orange)] text-white font-semibold text-sm px-8 py-3.5 hover:brightness-110 transition shadow-lg"
-            >
-              Ver planos
-            </a>
-            <a
-              href="#contato"
-              className="rounded-full border border-[var(--neon)]/60 bg-[var(--bg-deep)]/40 backdrop-blur text-[var(--neon)] font-semibold text-sm px-8 py-3.5 hover:bg-[var(--neon)]/20 transition"
-            >
-              Falar com consultor
-            </a>
-          </div>
-
-          {/* INDICADORES (PONTINHOS) DO CARROSSEL */}
-          <div className="flex gap-2 mt-12">
-            {SLIDES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  clearInterval(timer.current);
-                  setIdx(i);
-                }}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  i === idx ? "w-8 bg-[var(--neon)]" : "w-3 bg-white/40"
-                }`}
-                aria-label={`Slide ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+      {/* CONTROLES DO CARROSSEL (PONTINHOS NA PARTE INFERIOR) */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        {SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              clearInterval(timer.current);
+              setIdx(i);
+            }}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              i === idx ? "w-8 bg-[var(--neon)]" : "w-2.5 bg-white/50 hover:bg-white"
+            }`}
+            aria-label={`Banner ${i + 1}`}
+          />
+        ))}
       </div>
 
-      {/* SETAS DE NAVEGAÇÃO LATERAIS */}
+      {/* SETAS LATERAIS */}
       <button
         onClick={() => go(-1)}
-        className="z-30 absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white border border-white/20 transition backdrop-blur"
+        className="z-30 absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
         aria-label="Banner anterior"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={() => go(1)}
-        className="z-30 absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white border border-white/20 transition backdrop-blur"
+        className="z-30 absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/70 text-white border border-white/20 transition backdrop-blur"
         aria-label="Próximo banner"
       >
         <ChevronRight size={24} />
