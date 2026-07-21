@@ -43,15 +43,15 @@ const FONT_IMPORT = `
 
 const BANNERS = [
   {
-    image: "https://i.ibb.co/L50P80T/banner-indique-ganhe.jpg",
+    image: "https://ibb.co/HfHKFhnz",
     alt: "Indique e Ganhe R$ 30,00 por indicação",
   },
   {
-    image: "https://i.ibb.co/6PqvhqS/banner-entretenimento.jpg",
+    image: "https://ibb.co/dwt2L3Ht",
     alt: "Um mundo de Entretenimento na sua casa",
   },
   {
-    image: "https://ibb.co/k2RCX6MG",
+    image: "https://ibb.co/gLbZ06JL",
     alt: "Plano Gamer 1000 Mega por R$ 129,90",
   },
 ];
